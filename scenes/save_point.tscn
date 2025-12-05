@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcnqi24dq50dq"]
+
+[ext_resource type="Script" uid="uid://winlycmavqvt" path="res://scripts/save_point.gd" id="1_n8qrg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w173k"]
+size = Vector2(100, 720)
+
+[node name="SavePoint" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_n8qrg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(50, 360)
+shape = SubResource("RectangleShape2D_w173k")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

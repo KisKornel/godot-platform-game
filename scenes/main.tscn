@@ -1,0 +1,146 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpfm8g24isfqw"]
+
+[ext_resource type="Script" uid="uid://cpicg0ui5rd5" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cfsplx3evghjf" path="res://scenes/bg.tscn" id="2_0wfyh"]
+[ext_resource type="FontFile" uid="uid://bs1avnq10ct7r" path="res://assets/fonts/Roboto-SemiBold.ttf" id="3_sugp2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_o5qli")
+
+[node name="BG" parent="." instance=ExtResource("2_0wfyh")]
+
+[node name="Actions" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CenterContainer" type="CenterContainer" parent="Actions"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Actions/CenterContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Play" type="Button" parent="Actions/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_sugp2")
+theme_override_font_sizes/font_size = 24
+text = "Play"
+
+[node name="Settings" type="Button" parent="Actions/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Settings"
+
+[node name="Quit" type="Button" parent="Actions/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_sugp2")
+theme_override_font_sizes/font_size = 24
+text = "Quit
+"
+
+[node name="SettingsPanelContainer" type="CenterContainer" parent="Actions"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="ColorRect" type="ColorRect" parent="Actions/SettingsPanelContainer"]
+custom_minimum_size = Vector2(300, 250)
+layout_mode = 2
+color = Color(0, 0, 0, 0.7176471)
+
+[node name="MarginContainer" type="MarginContainer" parent="Actions/SettingsPanelContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Actions/SettingsPanelContainer/ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Actions/SettingsPanelContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Actions/SettingsPanelContainer/ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Music" type="Label" parent="Actions/SettingsPanelContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Music"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Actions/SettingsPanelContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 60.0
+
+[node name="Spacer2" type="Control" parent="Actions/SettingsPanelContainer/ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="SFX" type="Label" parent="Actions/SettingsPanelContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Sound"
+
+[node name="SFXVolumeSlider2" type="HSlider" parent="Actions/SettingsPanelContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 80.0
+
+[node name="Spacer3" type="Control" parent="Actions/SettingsPanelContainer/ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Back" type="Button" parent="Actions/SettingsPanelContainer/ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_sugp2")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_sugp2")
+text = "Back
+"
+
+[connection signal="pressed" from="Actions/CenterContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Actions/CenterContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Actions/CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="value_changed" from="Actions/SettingsPanelContainer/ColorRect/MarginContainer/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="Actions/SettingsPanelContainer/ColorRect/MarginContainer/VBoxContainer/SFXVolumeSlider2" to="." method="_on_sfx_volume_slider_2_value_changed"]
+[connection signal="pressed" from="Actions/SettingsPanelContainer/ColorRect/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

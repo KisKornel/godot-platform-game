@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://coccxmtx2m2wo"]
+
+[ext_resource type="Texture2D" uid="uid://bqnfhtjfl3qo5" path="res://assets/sprites/tilesets/base/Tiles/13.png" id="1_507ja"]
+[ext_resource type="Texture2D" uid="uid://di2cwojna67ot" path="res://assets/sprites/tilesets/base/Tiles/14.png" id="2_n1ckp"]
+[ext_resource type="Texture2D" uid="uid://3hpfjw5oobot" path="res://assets/sprites/tilesets/base/Tiles/15.png" id="3_u7qrw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6f2a1"]
+size = Vector2(376, 32)
+
+[node name="Platform" type="AnimatableBody2D"]
+scale = Vector2(0.5, 0.5)
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-128, -19.25)
+scale = Vector2(1, 0.5860215)
+texture = ExtResource("1_507ja")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -20.25)
+scale = Vector2(1, 0.5645161)
+texture = ExtResource("2_n1ckp")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(128, -20.25)
+scale = Vector2(1, 0.5645161)
+texture = ExtResource("3_u7qrw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -30)
+shape = SubResource("RectangleShape2D_6f2a1")
+one_way_collision = true
